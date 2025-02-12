@@ -6,12 +6,19 @@ import SwiftUI
 struct DesenhoView: View {
     
     @State var curColor: Color = .black
+    
     @State var gridColors: [[Color]] = Array(repeating: Array(repeating: .white, count: 16), count: 16)
-    @State var previousGridColors: [[[Color]]] = [[[]]]
+    @State var previousGridColors: [Pixel] = []
+
     @State var gridNumbers: [[Int]]
+    
+    @State var cleaned : Bool = false
+    @State var cleanedDrawing : [Pixel] = []
+
+    
     var colorPalette : [Color] = [Color.white, Color.black, Color.red, Color.blue, Color.yellow, Color.orange, Color.green, Color.purple]
     
-@State var painting: Bool = false
+    @State var painting: Bool = false
     
     var premadeDrawing : Bool = true
     var premadeID : Int
@@ -28,7 +35,7 @@ struct DesenhoView: View {
     @State private var mostrarAlertaSalvar = false
     
     
-   // @ObservedObject var viewModel = CorePixelViewModel()
+    // @ObservedObject var viewModelSwift = CorePixelViewModel()
     var viewModelSwift: ModelSwiftData
     @Environment(\.dismiss) private var dismiss
     // aplica a viewModelSwift
@@ -96,28 +103,84 @@ struct DesenhoView: View {
                                 }
                                 
                                 Button {
-                                    if(previousGridColors.count > 0){
-                                        if(previousGridColors[0] != [[]]){
-                                            gridColors = previousGridColors[0]
-                                            previousGridColors.removeAll()
-                                        }
-                                    }
+                                    
                                 } label: {
                                     VStack {
                                         Image("desfazer")
-                                            .opacity(previousGridColors.count > 0 ? 1 : 0.3)
+                                            .opacity(previousGridColors.count > 0 || cleaned ? 1 : 0.3)
                                         Text("Desfazer")
-                                            .foregroundColor(previousGridColors.count > 0 ? .black : .gray)
+                                            .foregroundColor(previousGridColors.count > 0 || cleaned ? .black : .gray)
                                             .font(.custom("Quantico-Regular", size: 15))
                                     }
-                                }.disabled(previousGridColors.count > 0 ? false : true)
+                                }.disabled(previousGridColors.count > 0 || cleaned ? false : true)
+                                    .simultaneousGesture(
+                                        LongPressGesture(minimumDuration: 0.5)
+                                            .onEnded {_ in
+                                                if(previousGridColors.count > 10)
+                                                {
+                                                    for _ in 1...10 {
+                                                        let _pixel = previousGridColors[previousGridColors.count - 1]
+                                                        gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                                        previousGridColors.remove(at: previousGridColors.count - 1)
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    for _ in 1...previousGridColors.count {
+                                                        let _pixel = previousGridColors[previousGridColors.count - 1]
+                                                        gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                                        previousGridColors.remove(at: previousGridColors.count - 1)
+                                                    }
+                                                }
+                                            }
+                                    ).highPriorityGesture(
+                                        TapGesture()
+                                            .onEnded {
+                                                if(cleaned)
+                                                {
+                                                    for i in 0..<cleanedDrawing.count{
+                                                        let _pixel = cleanedDrawing[i]
+                                                        gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                                    }
+                                                    
+                                                    cleaned = false
+                                                    cleanedDrawing.removeAll()
+                                                }
+                                                
+                                                if(previousGridColors.count > 0)
+                                                {
+                                                    let _pixel = previousGridColors[previousGridColors.count - 1]
+                                                    gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                                    previousGridColors.remove(at: previousGridColors.count - 1)
+                                                }
+                                            }
+                                    )
+                                
+                                Button("Refazer"){
+                                    
+                                }
                                 
                                 
                                 Spacer()
                                 
-                                Button("Apagar") {
-                                    savePreviousAction()
+                                Button("Limpar") {
+                                    
+                                    if(!cleaned)
+                                    {
+                                        cleaned = true;
+                                        for i in 0..<gridColors.count {
+                                            for j in 0..<gridColors.count {
+                                                
+                                                if(gridColors[i][j] != Color.white){
+                                                    cleanedDrawing.append(Pixel(linha: i, coluna: j, coresRGB: gridColors[i][j].toComponents()))
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+                                    
                                     gridColors = Array(repeating: Array(repeating: .white, count: 16), count: 16)
+                                    
                                 }.foregroundColor(Color.red)
                                     .font(.custom("Quantico-Regular", size: 18))
                             }.padding(.trailing, 50)
@@ -135,7 +198,6 @@ struct DesenhoView: View {
                                 if(!estaSalvo){
                                     mostrarAlertaSalvar = true
                                 } else {
-                                    //troca para viewModelSwift
                                     viewModelSwift.editarDesenho(pixels: gridColors, desenho: viewModelSwift.desenhos[desenhoSalvoID])
                                     desenhoSalvoAlerta = true
                                 }
@@ -149,7 +211,6 @@ struct DesenhoView: View {
                             VStack {
                                 ForEach(0..<16, id: \.self) { i in
                                     HStack {
-                                        //troca para viewModelSwift
                                         ForEach(0..<16, id: \.self) { j in
                                             SquareComponent(corParaPintar: $curColor,
                                                             posicao: (linha: i, coluna: j),
@@ -174,27 +235,33 @@ struct DesenhoView: View {
                                             if locked == true {
                                                 if gridColors[row][column] == Color.white {
                                                     if(!premadeDrawing){
-                                                        savePreviousAction()
+                                                        savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: Color.white.toComponents()))
                                                         gridColors[row][column] = curColor
+                                                        
+                                                        cleanActions()
                                                     } else {
-                                                        //troca para viewModelSwift
                                                         if(viewModelSwift.getColorID(_color: curColor) == gridNumbers[row][column])
                                                         {
-                                                            savePreviousAction()
+                                                            savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: Color.white.toComponents()))
                                                             gridColors[row][column] = curColor
+                                                            
+                                                            cleanActions()
                                                         }
                                                     }
                                                 }
                                             } else {
                                                 if(!premadeDrawing){
-                                                    savePreviousAction()
+                                                    savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: gridColors[row][column].toComponents()))
                                                     gridColors[row][column] = curColor
+                                                    
+                                                    cleanActions()
                                                 } else {
-                                                    // troca para viewModelSwift
                                                     if(viewModelSwift.getColorID(_color: curColor) == gridNumbers[row][column])
                                                     {
-                                                        savePreviousAction()
+                                                        savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: gridColors[row][column].toComponents()))
                                                         gridColors[row][column] = curColor
+                                                        
+                                                        cleanActions()
                                                     }
                                                 }
                                             }
@@ -215,7 +282,6 @@ struct DesenhoView: View {
                             
                             HStack {
                                 ForEach(0..<colorPalette.count){ i in
-                                    // troca para viewModelSwift
                                     PalleteSquare(color: colorPalette[i], curColor: $curColor, viewModelSwift: viewModelSwift)
                                         .overlay {
                                             if(viewModelSwift.getColorID(_color: colorPalette[i]) != -1){
@@ -237,7 +303,6 @@ struct DesenhoView: View {
                         TextField("Título do desenho", text: $tituloDesenho)
                         Button("Cancelar", role: .cancel) {}
                         Button("Salvar") {
-                            // troca para viewModelSwift
                             viewModelSwift.salvarDesenho(titulo: tituloDesenho, pixels: gridColors, premadeID: Int64(premadeID))
                             tituloDesenho = ""
                             dismiss()
@@ -260,16 +325,31 @@ struct DesenhoView: View {
         }
     
     
-    func savePreviousAction(){
-        if(previousGridColors.count == 0){
-            previousGridColors.append(gridColors)
-        } else {
-            if(previousGridColors[previousGridColors.count - 1] != gridColors){
-                previousGridColors.append(gridColors)
+    func savePreviousAction(_pixel : Pixel){
+        
+        if(previousGridColors.count >= 50)
+        {
+            previousGridColors.remove(at: 0)
+        }
+        
+        if(previousGridColors.count > 0){
+            var lastPixel = previousGridColors[previousGridColors.count - 1]
+            if(lastPixel.coluna != _pixel.coluna || lastPixel.linha != _pixel.linha){
+                previousGridColors.append(_pixel)
             }
         }
-        if(previousGridColors.count > 2){
-            previousGridColors.remove(at: 0)
+        else
+        {
+            previousGridColors.append(_pixel)
+        }
+    }
+    
+    func cleanActions(){
+        if(cleaned){
+            previousGridColors.removeAll()
+            
+            cleaned = false
+            cleanedDrawing.removeAll()
         }
     }
 }

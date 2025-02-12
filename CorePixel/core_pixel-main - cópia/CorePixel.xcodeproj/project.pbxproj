@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A2FA1002D5BE7B800A4AC2E /* Quantico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FA0FF2D5BE7B800A4AC2E /* Quantico-Regular.ttf */; };
 		4A2FA1052D5BE93800A4AC2E /* ModelSwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FA1042D5BE93800A4AC2E /* ModelSwiftData.swift */; };
 		4A2FA1072D5BEAC000A4AC2E /* ViewModelSwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FA1062D5BEAC000A4AC2E /* ViewModelSwiftData.swift */; };
 		4A5C16942D52819B00C97B59 /* MiniPixelPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C16932D52819B00C97B59 /* MiniPixelPreview.swift */; };
@@ -18,6 +17,7 @@
 		4AD5051D2D51479900C979D5 /* MaoLivreComponente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5051C2D51479900C979D5 /* MaoLivreComponente.swift */; };
 		4AD5051F2D5147CC00C979D5 /* MeusDesenhosComponente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5051E2D5147CC00C979D5 /* MeusDesenhosComponente.swift */; };
 		4AD505252D51483500C979D5 /* CatalogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD505242D51483500C979D5 /* CatalogoView.swift */; };
+		BE6FA1302D5D34CB00729B7F /* Quantico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE6FA12F2D5D34CB00729B7F /* Quantico-Regular.ttf */; };
 		BE98A3252D53D63700634A0E /* DesenhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98A3242D53D63700634A0E /* DesenhoView.swift */; };
 		BE9F2E3E2D4AAE58008C3422 /* CorePixelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F2E3D2D4AAE58008C3422 /* CorePixelApp.swift */; };
 		BE9F2E402D4AAE58008C3422 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F2E3F2D4AAE58008C3422 /* ContentView.swift */; };
@@ -29,7 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A2FA0FF2D5BE7B800A4AC2E /* Quantico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quantico-Regular.ttf"; path = "../../../Downloads/Quantico/Quantico-Regular.ttf"; sourceTree = "<group>"; };
 		4A2FA1042D5BE93800A4AC2E /* ModelSwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSwiftData.swift; sourceTree = "<group>"; };
 		4A2FA1062D5BEAC000A4AC2E /* ViewModelSwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSwiftData.swift; sourceTree = "<group>"; };
 		4A5C16932D52819B00C97B59 /* MiniPixelPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPixelPreview.swift; sourceTree = "<group>"; };
@@ -40,6 +39,7 @@
 		4AD5051C2D51479900C979D5 /* MaoLivreComponente.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaoLivreComponente.swift; sourceTree = "<group>"; };
 		4AD5051E2D5147CC00C979D5 /* MeusDesenhosComponente.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeusDesenhosComponente.swift; sourceTree = "<group>"; };
 		4AD505242D51483500C979D5 /* CatalogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogoView.swift; sourceTree = "<group>"; };
+		BE6FA12F2D5D34CB00729B7F /* Quantico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quantico-Regular.ttf"; path = "../../../../Downloads/Quantico-Regular.ttf"; sourceTree = "<group>"; };
 		BE98A3242D53D63700634A0E /* DesenhoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesenhoView.swift; sourceTree = "<group>"; };
 		BE9F2E3A2D4AAE58008C3422 /* CorePixel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CorePixel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9F2E3D2D4AAE58008C3422 /* CorePixelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorePixelApp.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		BE9F2E312D4AAE58008C3422 = {
 			isa = PBXGroup;
 			children = (
-				4A2FA0FF2D5BE7B800A4AC2E /* Quantico-Regular.ttf */,
+				BE6FA12F2D5D34CB00729B7F /* Quantico-Regular.ttf */,
 				4A2FA1032D5BE8F100A4AC2E /* SwiftData */,
 				4A2FA1012D5BE7C700A4AC2E /* CoreData */,
 				BE9F2E3C2D4AAE58008C3422 /* CorePixel */,
@@ -196,7 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A2FA1002D5BE7B800A4AC2E /* Quantico-Regular.ttf in Resources */,
+				BE6FA1302D5D34CB00729B7F /* Quantico-Regular.ttf in Resources */,
 				BE9F2E462D4AAE59008C3422 /* Preview Assets.xcassets in Resources */,
 				BE9F2E422D4AAE59008C3422 /* Assets.xcassets in Resources */,
 			);
