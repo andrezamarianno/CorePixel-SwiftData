@@ -27,6 +27,10 @@ struct DesenhoView: View {
     
     @State var desenhoSalvoAlerta : Bool = false
     
+    @State var desenhoAlterado : Bool = false
+    @State var desenhoAlteradoAlerta : Bool = false
+    
+    
     var estaSalvo : Bool
     var desenhoSalvoID : Int
     
@@ -65,7 +69,11 @@ struct DesenhoView: View {
                         Spacer()
                             .frame(width: 80)
                         Button(action: {
-                            dismiss()
+                            if(desenhoAlterado){
+                                desenhoAlteradoAlerta.toggle()
+                            }else{
+                                dismiss()
+                            }
                         }) {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.black)
@@ -265,6 +273,11 @@ struct DesenhoView: View {
                                         let row = Int(location.y / squareSize)
                                         
                                         if row >= 0, row < 16, column >= 0, column < 16 {
+                                            
+                                            if(!desenhoAlterado){
+                                                desenhoAlterado = true
+                                            }
+                                            
                                             if locked == true {
                                                 if gridColors[row][column] == Color.white {
                                                     if(!premadeDrawing){
@@ -343,6 +356,12 @@ struct DesenhoView: View {
                     }
                     .alert("Desenho salvo", isPresented: $desenhoSalvoAlerta) {
                         Button("OK", role: .cancel) {
+                            dismiss()
+                        }
+                    }
+                    .alert("Tem certeza que deseja voltar? As alterações não salvas serão perdidas.", isPresented: $desenhoAlteradoAlerta){
+                        Button("Cancelar", role: .cancel) {}
+                        Button("Voltar", role: .destructive) {
                             dismiss()
                         }
                     }
