@@ -22,7 +22,7 @@ struct MaoLivreComponente: View {
             VStack{
                 Spacer()
                 HStack{
-                    Text("Pintando a mão livre!")
+                    Text("Pintando à mão livre!")
                         .font(.custom("Quantico-Regular", size: 30))
                         .foregroundStyle(Color("BW"))
                         .frame(width: 300)
