@@ -174,8 +174,11 @@ struct DesenhoView: View {
                                     if(redoGridColors.count > 0)
                                     {
                                         let _pixel = redoGridColors[redoGridColors.count - 1]
-                                        print(_pixel.coresRGB)
+                                        
+                                        savePreviousAction(_pixel: Pixel(linha: _pixel.linha, coluna: _pixel.coluna, coresRGB: gridColors[_pixel.linha][_pixel.coluna].toComponents()))
+                                        
                                         gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                        
                                         redoGridColors.remove(at: redoGridColors.count - 1)
 
                                     }
