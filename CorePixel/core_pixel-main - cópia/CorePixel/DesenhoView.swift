@@ -97,7 +97,7 @@ struct DesenhoView: View {
                                 } label: {
                                     VStack {
                                         Image(locked == false ? "lockOpen" : "lockClosed")
-                                        Text(locked == false ? "Bloquear" : "Desbloquear")
+                                        Text(locked == false ? "Não sobrepor" : "Sobrepor")
                                             .foregroundColor(.black)
                                             .font(.custom("Quantico-Regular", size: 15))
                                     }
