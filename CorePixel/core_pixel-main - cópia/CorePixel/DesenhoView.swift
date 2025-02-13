@@ -9,6 +9,7 @@ struct DesenhoView: View {
     
     @State var gridColors: [[Color]] = Array(repeating: Array(repeating: .white, count: 16), count: 16)
     @State var previousGridColors: [Pixel] = []
+    @State var redoGridColors: [Pixel] = []
 
     @State var gridNumbers: [[Int]]
     
@@ -120,7 +121,10 @@ struct DesenhoView: View {
                                                 {
                                                     for _ in 1...10 {
                                                         let _pixel = previousGridColors[previousGridColors.count - 1]
+                                                        saveRedoAction(_pixel: Pixel(linha: _pixel.linha, coluna: _pixel.coluna, coresRGB: gridColors[_pixel.linha][_pixel.coluna].toComponents()))
+                                                                       
                                                         gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                                        
                                                         previousGridColors.remove(at: previousGridColors.count - 1)
                                                     }
                                                 }
@@ -128,7 +132,11 @@ struct DesenhoView: View {
                                                 {
                                                     for _ in 1...previousGridColors.count {
                                                         let _pixel = previousGridColors[previousGridColors.count - 1]
+                                                        
+                                                        saveRedoAction(_pixel: Pixel(linha: _pixel.linha, coluna: _pixel.coluna, coresRGB: gridColors[_pixel.linha][_pixel.coluna].toComponents()))
+                                                        
                                                         gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                                        
                                                         previousGridColors.remove(at: previousGridColors.count - 1)
                                                     }
                                                 }
@@ -150,15 +158,37 @@ struct DesenhoView: View {
                                                 if(previousGridColors.count > 0)
                                                 {
                                                     let _pixel = previousGridColors[previousGridColors.count - 1]
+                                                    
+                                                    saveRedoAction(_pixel: Pixel(linha: _pixel.linha, coluna: _pixel.coluna, coresRGB: gridColors[_pixel.linha][_pixel.coluna].toComponents()))
+                                                    
                                                     gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                                    
+                                                    
                                                     previousGridColors.remove(at: previousGridColors.count - 1)
                                                 }
                                             }
                                     )
                                 
-                                Button("Refazer"){
+                                Button(){
                                     
-                                }
+                                    if(redoGridColors.count > 0)
+                                    {
+                                        let _pixel = redoGridColors[redoGridColors.count - 1]
+                                        print(_pixel.coresRGB)
+                                        gridColors[_pixel.linha][_pixel.coluna] = Color.fromComponents(_pixel.coresRGB)
+                                        redoGridColors.remove(at: redoGridColors.count - 1)
+
+                                    }
+                                    
+                                } label: {
+                                    VStack {
+                                        Image("Refazer")
+                                            .opacity(redoGridColors.count > 0 ? 1 : 0.3)
+                                        Text("Refazer")
+                                            .foregroundColor(redoGridColors.count > 0 ? .black : .gray)
+                                            .font(.custom("Quantico-Regular", size: 15))
+                                    }
+                                }.disabled(redoGridColors.count > 0 ? false : true)
                                 
                                 
                                 Spacer()
@@ -344,6 +374,15 @@ struct DesenhoView: View {
         }
     }
     
+    func saveRedoAction(_pixel: Pixel){
+        
+        if(redoGridColors.count >= 50){
+            redoGridColors.remove(at: 0)
+        }
+
+        redoGridColors.append(_pixel)
+    }
+    
     func cleanActions(){
         if(cleaned){
             previousGridColors.removeAll()
@@ -351,6 +390,8 @@ struct DesenhoView: View {
             cleaned = false
             cleanedDrawing.removeAll()
         }
+        
+        redoGridColors.removeAll()
     }
 }
 
