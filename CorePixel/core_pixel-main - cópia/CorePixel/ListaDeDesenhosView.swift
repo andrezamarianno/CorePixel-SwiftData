@@ -178,7 +178,7 @@ struct ListaDeDesenhos: View {
                        viewModel.carregarDesenho()
                 
                    }*/
-            .alert("Deseja apagar o desenho?", isPresented: $apagarDesenhoAlerta) {
+            .alert("Deseja apagar o desenho? \nEle será excluído permanentemente!", isPresented: $apagarDesenhoAlerta) {
                 Button("Cancelar", role: .cancel) {
                     
                 }

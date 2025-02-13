@@ -39,7 +39,8 @@ struct CorePixelApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CatalogoView(viewModelSwift: viewModelSwift)
+//            CatalogoView(viewModelSwift: viewModelSwift)
+            SplashView(viewModelSwift: viewModelSwift)
         }
         .modelContainer(container)
     }

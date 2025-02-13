@@ -26,6 +26,9 @@
 		BE9F2E4D2D4AAE80008C3422 /* PalleteSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F2E4C2D4AAE80008C3422 /* PalleteSquare.swift */; };
 		BE9F2E4F2D4AAE99008C3422 /* SquareComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F2E4E2D4AAE99008C3422 /* SquareComponent.swift */; };
 		BEAE8EBF2D51541C0048A5F6 /* CatalogoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAE8EBE2D51541C0048A5F6 /* CatalogoViewModel.swift */; };
+		CE76D9EE2D5E752F00CA7E57 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76D9ED2D5E752F00CA7E57 /* AboutView.swift */; };
+		CE76D9F02D5E759400CA7E57 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76D9EF2D5E759400CA7E57 /* SplashView.swift */; };
+		CE76D9F22D5E75A700CA7E57 /* AnimatedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76D9F12D5E75A700CA7E57 /* AnimatedRectangle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		BE9F2E4C2D4AAE80008C3422 /* PalleteSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalleteSquare.swift; sourceTree = "<group>"; };
 		BE9F2E4E2D4AAE99008C3422 /* SquareComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareComponent.swift; sourceTree = "<group>"; };
 		BEAE8EBE2D51541C0048A5F6 /* CatalogoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogoViewModel.swift; sourceTree = "<group>"; };
+		CE76D9ED2D5E752F00CA7E57 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		CE76D9EF2D5E759400CA7E57 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		CE76D9F12D5E75A700CA7E57 /* AnimatedRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRectangle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,7 @@
 				4AA1E53E2D4C291A008B5F94 /* botaoSalvarComponente.swift */,
 				4AD5051C2D51479900C979D5 /* MaoLivreComponente.swift */,
 				4AD5051E2D5147CC00C979D5 /* MeusDesenhosComponente.swift */,
+				CE76D9F12D5E75A700CA7E57 /* AnimatedRectangle.swift */,
 			);
 			path = Componentes;
 			sourceTree = "<group>";
@@ -126,6 +133,8 @@
 				BE9F2E432D4AAE59008C3422 /* CorePixel.entitlements */,
 				BE9F2E412D4AAE59008C3422 /* Assets.xcassets */,
 				BE9F2E442D4AAE59008C3422 /* Preview Content */,
+				CE76D9ED2D5E752F00CA7E57 /* AboutView.swift */,
+				CE76D9EF2D5E759400CA7E57 /* SplashView.swift */,
 			);
 			path = CorePixel;
 			sourceTree = "<group>";
@@ -211,6 +220,8 @@
 			files = (
 				4AD505252D51483500C979D5 /* CatalogoView.swift in Sources */,
 				4AD5051D2D51479900C979D5 /* MaoLivreComponente.swift in Sources */,
+				CE76D9F22D5E75A700CA7E57 /* AnimatedRectangle.swift in Sources */,
+				CE76D9EE2D5E752F00CA7E57 /* AboutView.swift in Sources */,
 				BE98A3252D53D63700634A0E /* DesenhoView.swift in Sources */,
 				BE9F2E4F2D4AAE99008C3422 /* SquareComponent.swift in Sources */,
 				BE9F2E402D4AAE58008C3422 /* ContentView.swift in Sources */,
@@ -225,6 +236,7 @@
 				4AD5051F2D5147CC00C979D5 /* MeusDesenhosComponente.swift in Sources */,
 				4A2FA1072D5BEAC000A4AC2E /* ViewModelSwiftData.swift in Sources */,
 				4AA1E53B2D4C1CF6008B5F94 /* ListaDeDesenhosView.swift in Sources */,
+				CE76D9F02D5E759400CA7E57 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,10 +363,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CorePixel/CorePixel.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CorePixel/Preview Content\"";
-				DEVELOPMENT_TEAM = Q5QA4HMVAD;
+				DEVELOPMENT_TEAM = ZUG6CNLA9K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CorePixel/Info.plist;
@@ -375,6 +388,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = Group2.CorePixel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -390,10 +404,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CorePixel/CorePixel.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CorePixel/Preview Content\"";
-				DEVELOPMENT_TEAM = Q5QA4HMVAD;
+				DEVELOPMENT_TEAM = ZUG6CNLA9K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CorePixel/Info.plist;
@@ -414,6 +429,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = Group2.CorePixel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
