@@ -1,3 +1,6 @@
+// Ana Jamas, Andreza Marianno, Guilherme Fabbri, Heitor Ivaza
+// ViewModelSwiftData //
+
 import SwiftUI
 import SwiftData
 

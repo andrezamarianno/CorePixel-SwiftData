@@ -1,3 +1,6 @@
+// Ana Jamas, Andreza Marianno, Guilherme Fabbri, Heitor Ivaza
+// AnimatedRectangle //
+
 import SwiftUI
 
 struct AnimatedRectangle: View {

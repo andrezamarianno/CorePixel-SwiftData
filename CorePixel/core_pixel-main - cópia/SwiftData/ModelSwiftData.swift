@@ -1,3 +1,7 @@
+// GITHUB: https://github.com/andrezamarianno/CorePixel-SwiftData
+// Ana Jamas, Andreza Marianno, Guilherme Fabbri, Heitor Ivaza
+// ModelSwiftData //
+
 import SwiftUI
 import SwiftData
 

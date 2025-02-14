@@ -1,9 +1,5 @@
-//
-//  AboutView.swift
-//  CorePixel
-//
-//  Created by GUILHERME FAGGION FABBRI on 12/02/25.
-//
+// Ana Jamas, Andreza Marianno, Guilherme Fabbri, Heitor Ivaza
+// AboutView //
 
 
 import SwiftUI
