@@ -105,7 +105,7 @@ struct DesenhoView: View {
                                 } label: {
                                     VStack {
                                         Image(locked == false ? "lockOpen" : "lockClosed")
-                                        Text(locked == false ? "Não sobrepor" : "Sobrepor")
+                                        Text(locked == false ? "Bloquear" : "Desbloquear")
                                             .foregroundColor(.black)
                                             .font(.custom("Quantico-Regular", size: 15))
                                     }
@@ -281,33 +281,41 @@ struct DesenhoView: View {
                                             if locked == true {
                                                 if gridColors[row][column] == Color.white {
                                                     if(!premadeDrawing){
-                                                        savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: Color.white.toComponents()))
-                                                        gridColors[row][column] = curColor
-                                                        
-                                                        cleanActions()
-                                                    } else {
-                                                        if(viewModelSwift.getColorID(_color: curColor) == gridNumbers[row][column])
-                                                        {
+                                                        if(gridColors[row][column] != curColor){
                                                             savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: Color.white.toComponents()))
                                                             gridColors[row][column] = curColor
                                                             
                                                             cleanActions()
                                                         }
+                                                    } else {
+                                                        if(viewModelSwift.getColorID(_color: curColor) == gridNumbers[row][column])
+                                                        {
+                                                            if(gridColors[row][column] != curColor){
+                                                                savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: Color.white.toComponents()))
+                                                                gridColors[row][column] = curColor
+                                                                
+                                                                cleanActions()
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             } else {
                                                 if(!premadeDrawing){
-                                                    savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: gridColors[row][column].toComponents()))
-                                                    gridColors[row][column] = curColor
-                                                    
-                                                    cleanActions()
-                                                } else {
-                                                    if(viewModelSwift.getColorID(_color: curColor) == gridNumbers[row][column])
-                                                    {
+                                                    if(gridColors[row][column] != curColor){
                                                         savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: gridColors[row][column].toComponents()))
                                                         gridColors[row][column] = curColor
                                                         
                                                         cleanActions()
+                                                    }
+                                                } else {
+                                                    if(viewModelSwift.getColorID(_color: curColor) == gridNumbers[row][column])
+                                                    {
+                                                        if(gridColors[row][column] != curColor){
+                                                            savePreviousAction(_pixel: Pixel(linha: row, coluna: column, coresRGB: gridColors[row][column].toComponents()))
+                                                            gridColors[row][column] = curColor
+                                                            
+                                                            cleanActions()
+                                                        }
                                                     }
                                                 }
                                             }
@@ -359,9 +367,9 @@ struct DesenhoView: View {
                             dismiss()
                         }
                     }
-                    .alert("Tem certeza que deseja voltar? As alterações não salvas serão perdidas.", isPresented: $desenhoAlteradoAlerta){
+                    .alert("Tem certeza que deseja sair? As alterações não salvas serão perdidas.", isPresented: $desenhoAlteradoAlerta){
                         Button("Cancelar", role: .cancel) {}
-                        Button("Voltar", role: .destructive) {
+                        Button("Sair", role: .destructive) {
                             dismiss()
                         }
                     }
