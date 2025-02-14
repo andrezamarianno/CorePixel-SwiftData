@@ -34,10 +34,24 @@ struct CatalogoView: View {
                         .ignoresSafeArea()
                 
                 VStack{
-                    Image("CorePixel")
-                        .resizable()
-                        .frame(width: 500, height: 100)
-                        .padding(50)
+                    ZStack {
+                        Image("CorePixel")
+                            .resizable()
+                            .frame(width: 500, height: 100)
+                            .padding(50)
+                        
+                        
+                        HStack {
+                            Spacer()
+                            
+                            NavigationLink(destination: AboutView()){
+                                Image(systemName: "info.circle")
+                                    .font(.title)
+                                    .foregroundColor(.azulCatalogo)
+                            }.padding(.trailing, 65)
+                        }
+
+                    }
                     
                     
                     HStack{

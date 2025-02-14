@@ -7,12 +7,12 @@ import SwiftUI
 struct AboutView: View {
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(spacing: 16) {
                 Text("Sobre o Aplicativo")
                     .font(.largeTitle)
                     .bold()
                 
-                Text("Este aplicativo foi feito por: Ana Jamas, Andreza Marianno, Guilherme Fabbri, Heitor Lopes")
+                Text("Feito por: Ana Jamas, Andreza Marianno, Guilherme Fabbri, Heitor Lopes")
                 
             }
             
